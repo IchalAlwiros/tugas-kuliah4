@@ -48,6 +48,15 @@ class Book
         return false;
     }
 
+    public function getAll()
+    {
+        $query = "SELECT * FROM books";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function read($bookId)
     {
         $query = "SELECT * FROM books WHERE id = :id";
@@ -88,44 +97,44 @@ class Book
     }
 }
 
-// Contoh penggunaan
-$database = new Database();
-$db = $database->getConnection();
+// // Contoh penggunaan
+// $database = new Database();
+// $db = $database->getConnection();
 
-$bookManager = new Book($db);
+// $bookManager = new Book($db);
 
-// Create
-$bookData1 = ['title' => 'Laskar Pelangi', 'author' => 'Budi'];
-$bookManager->create($bookData1);
+// // Create
+// $bookData1 = ['title' => 'Laskar Pelangi', 'author' => 'Budi'];
+// $bookManager->create($bookData1);
 
-$bookData2 = ['title' => 'Jejak Petualang', 'author' => 'Ichal'];
-$bookManager->create($bookData2);
+// $bookData2 = ['title' => 'Jejak Petualang', 'author' => 'Ichal'];
+// $bookManager->create($bookData2);
 
-// Read
-$bookIdToRead = 1;
-$bookRead = $bookManager->read($bookIdToRead);
-if ($bookRead) {
-    echo "Book with ID $bookIdToRead found:\n";
-    print_r($bookRead);
-} else {
-    echo "Book with ID $bookIdToRead not found.\n";
-}
+// // Read
+// $bookIdToRead = 1;
+// $bookRead = $bookManager->read($bookIdToRead);
+// if ($bookRead) {
+//     echo "Book with ID $bookIdToRead found:\n";
+//     print_r($bookRead);
+// } else {
+//     echo "Book with ID $bookIdToRead not found.\n";
+// }
 
-// Update
-$bookIdToUpdate = 2;
-$newBookData = ['title' => 'New Book 2 Title', 'author' => 'New Author 2'];
-if ($bookManager->update($bookIdToUpdate, $newBookData)) {
-    echo "Book with ID $bookIdToUpdate updated successfully.\n";
-} else {
-    echo "Book with ID $bookIdToUpdate not found.\n";
-}
+// // Update
+// $bookIdToUpdate = 2;
+// $newBookData = ['title' => 'New Book 2 Title', 'author' => 'New Author 2'];
+// if ($bookManager->update($bookIdToUpdate, $newBookData)) {
+//     echo "Book with ID $bookIdToUpdate updated successfully.\n";
+// } else {
+//     echo "Book with ID $bookIdToUpdate not found.\n";
+// }
 
-// Delete
-$bookIdToDelete = 2;
-if ($bookManager->delete($bookIdToDelete)) {
-    echo "Book with ID $bookIdToDelete deleted successfully.\n";
-} else {
-    echo "Book with ID $bookIdToDelete not found.\n";
-}
+// // Delete
+// $bookIdToDelete = 2;
+// if ($bookManager->delete($bookIdToDelete)) {
+//     echo "Book with ID $bookIdToDelete deleted successfully.\n";
+// } else {
+//     echo "Book with ID $bookIdToDelete not found.\n";
+// }
 
 ?>
