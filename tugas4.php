@@ -4,14 +4,15 @@ class Database
 {
     private $host = "127.0.0.1";
     private $username = "root";
-    private $password = "password";
+    // private $password = "password";
     private $database = "kuliah";
     private $conn;
 
     public function __construct()
     {
         try {
-            $this->conn = new PDO("mysql:host=$this->host;dbname=$this->database", $this->username, $this->password);
+            // $this->conn = new PDO("mysql:host=$this->host;dbname=$this->database", $this->username, $this->password);
+            $this->conn = new PDO("mysql:host=$this->host;dbname=$this->database", $this->username);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "Connected successfully\n";
         } catch(PDOException $e) {
