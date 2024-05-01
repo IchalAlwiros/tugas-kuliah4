@@ -58,6 +58,15 @@
         }
         ?>
     </table>
+
+    <h2>Tambah Buku Baru</h2>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <label>Judul:</label><br>
+        <input type="text" name="title"><br>
+        <label>Penulis:</label><br>
+        <input type="text" name="author"><br><br>
+        <button type="submit" name="create">Tambah Buku</button>
+    </form>
 </body>
 </html>
 
@@ -109,3 +118,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
+
+
